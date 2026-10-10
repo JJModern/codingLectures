@@ -46,7 +46,7 @@ With many congruences, start from `x ≡ 0 (mod 1)` and merge them one at a time
 
 The example above: `gcd(12, 18) = 6` and `11 − 5 = 6` is divisible by 6, so a solution exists modulo 36. The merge gives `x ≡ 29 (mod 36)` (check: 29 = 2·12 + 5 = 18 + 11).
 
-Related: *Codeforces 687B Remainders Game* asks whether knowing `x mod c_i` for all `i` determines `x mod k`; by CRT this holds iff `k` divides `lcm(c_i)`, which you check without computing the (huge) lcm by reducing modulo `k` (or by checking prime powers of `k`).
+Related: *Codeforces 687B Remainders Game* asks whether knowing `x mod c_i` for all `i` determines `x mod k`; by CRT this holds iff `k` divides `lcm(c_i)`, which you check without computing the (huge) lcm by maintaining `L = lcm(L, gcd(c_i, k))`, a divisor of `k` that never overflows; the answer is yes iff finally `L = k`.
 
 ## 4. Euler's totient
 
