@@ -45,7 +45,7 @@ ll dot(P a, P b) { return a.x * b.x + a.y * b.y; }
 ```
 
 - Integer input ⇒ keep **everything** integer as long as possible
-- |coords| ≤ 10⁹ ⇒ cross up to 4·10¹⁸: fits `long long` (barely)
+- |coords| ≤ 10⁹ ⇒ cross of differences up to 8·10¹⁸: fits `long long` (barely)
 
 ---
 
