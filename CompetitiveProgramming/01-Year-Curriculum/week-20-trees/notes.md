@@ -1,4 +1,4 @@
-# Week 20 — Trees: Traversals, Diameter, Subtree Sizes, Tree DP, Rerooting
+# Lecture 20 — Trees: Traversals, Diameter, Subtree Sizes, Tree DP, Rerooting
 
 > Year Curriculum · Prerequisites: Week 14–15 (DP), Week 16 (BFS/DFS), Week 19 (spanning trees) · Estimated time: 3 hours
 

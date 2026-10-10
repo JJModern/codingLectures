@@ -1,4 +1,4 @@
-# Week 18 — Mid-Year Review: Problem-Solving Method and Mock Contest
+# Lecture 18 — Mid-Year Review: Problem-Solving Method and Mock Contest
 
 > Year Curriculum · Prerequisites: Weeks 1–17 · Estimated time: 1 hour review + 3-hour mock contest + 1 hour debrief
 

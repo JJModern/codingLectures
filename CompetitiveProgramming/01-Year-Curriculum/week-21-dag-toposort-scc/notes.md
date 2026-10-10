@@ -1,4 +1,4 @@
-# Week 21 — DAGs, Topological Sort, DP on DAGs, Strongly Connected Components
+# Lecture 21 — DAGs, Topological Sort, DP on DAGs, Strongly Connected Components
 
 > Year Curriculum · Prerequisites: Week 14–15 (DP), Week 16 (BFS/DFS), Week 17 (shortest paths) · Estimated time: 3 hours
 

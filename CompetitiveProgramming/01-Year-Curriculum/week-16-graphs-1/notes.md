@@ -1,4 +1,4 @@
-# Week 16 — Graphs I: Representations, BFS, DFS, Components, Grids, Bipartite Check
+# Lecture 16 — Graphs I: Representations, BFS, DFS, Components, Grids, Bipartite Check
 
 > Year Curriculum · Prerequisites: Week 2 (STL: `vector`, `queue`, `stack`), Week 8 (recursion) · Estimated time: 2.5 hours
 

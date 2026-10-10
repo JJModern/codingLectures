@@ -1,4 +1,4 @@
-# Week 17 — Graphs II: Dijkstra, Bellman-Ford, Floyd-Warshall, 0-1 BFS
+# Lecture 17 — Graphs II: Dijkstra, Bellman-Ford, Floyd-Warshall, 0-1 BFS
 
 > Year Curriculum · Prerequisites: Week 13 (priority queues), Week 15 (DP), Week 16 (graph representations, BFS) · Estimated time: 3 hours
 

@@ -1,4 +1,4 @@
-# Week 19 — Disjoint Set Union and Minimum Spanning Trees
+# Lecture 19 — Disjoint Set Union and Minimum Spanning Trees
 
 > Year Curriculum · Prerequisites: Week 4 (sorting, exchange arguments), Week 13 (priority queues), Week 16 (graphs, components) · Estimated time: 2.5 hours
 

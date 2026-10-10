@@ -1,4 +1,4 @@
-# Week 15 — Dynamic Programming II: Knapsack, LIS, LCS, Edit Distance, Grid DP
+# Lecture 15 — Dynamic Programming II: Knapsack, LIS, LCS, Edit Distance, Grid DP
 
 > Year Curriculum · Prerequisites: Week 5 (binary search), Week 14 (DP I: memoization, tabulation, 1D DP) · Estimated time: 2.5–3 hours
 
