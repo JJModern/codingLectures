@@ -7,6 +7,8 @@ Every lecture folder contains:
 - **`slides.md`** — a [Marp](https://marp.app) slide deck (present it with the Marp VS Code extension, or export with `npx @marp-team/marp-cli slides.md --pdf`).
 - **`notes.md`** — full lecture notes with explanations, worked examples, C++17 reference code, common mistakes, and practice problems.
 
+Each lecture folder also includes pre-built **`slides.pdf`** and **`notes.pdf`**. To regenerate them after edits, run [`tools/build_pdfs.sh`](tools/build_pdfs.sh) (needs Node, pandoc and Chromium/Chrome).
+
 See [AUTHORING.md](AUTHORING.md) for the format conventions.
 
 ## Progression
