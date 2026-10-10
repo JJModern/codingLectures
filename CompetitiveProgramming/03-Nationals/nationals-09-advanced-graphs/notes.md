@@ -59,7 +59,7 @@ To compute blocks, push each tree edge and each back edge (once, from the lower 
 
 The **block-cut tree** has a node for each block and for each cut vertex, with an edge between a block and each cut vertex it contains. It is a tree (a forest if the graph is disconnected). Key property: the vertices that lie on **every** simple u–v path are exactly the cut vertices on the block-cut-tree path between u and v, and the set of vertices on **some** simple u–v path is the union of the blocks on that tree path.
 
-* CF 487E *Tourists* (stretch): each vertex has a price; queries ask the minimum price over all vertices lying on some simple u–v path, with price updates. Build the block-cut tree, store at each block node the min over its non-parent vertices (a multiset), and answer path minima with HLD (Lecture 4).
+* CF 487E *Tourists* (stretch): each vertex has a price; queries ask the minimum price over all vertices lying on some simple u–v path, with price updates. Build the block-cut tree in the variant with a node for **every** vertex (not only cut vertices) plus a node per block, store at each block node the min over its non-parent vertices (a multiset), and answer path minima with HLD (Lecture 4).
 * CF 962F *Simple Cycles Edges*: an edge lies on exactly one simple cycle iff its block is a simple cycle, i.e. the block has as many edges as vertices.
 
 ## 4. 2-SAT
@@ -346,7 +346,7 @@ int main() {
 
 * **Skipping the parent vertex instead of the parent edge.** Breaks on multi-edges: a doubled edge is reported as a bridge.
 * **Root rule for cut vertices.** The root is a cut vertex only with ≥ 2 DFS children; applying the `low[c] ≥ tin[v]` rule to the root marks every root as a cut vertex.
-* **Using `low[to]` instead of `tin[to]` for back edges.** In the undirected lowlink both work for bridges, but mixing conventions with the block edge stack causes subtle errors; use `tin[to]` consistently.
+* **Using `low[to]` instead of `tin[to]` for back edges.** It happens to give correct bridges, but it breaks the articulation-point criterion (a back edge to v itself would inherit v's smaller `low`, hiding that v is a cut vertex). Use `tin[to]`.
 * **Directed SCC vs undirected lowlink.** In Tarjan's SCC algorithm you must ignore edges to vertices that are finished and not on the stack; in the undirected lowlink there is no such check. Do not copy one into the other.
 * **2-SAT: one implication per clause.** Every clause needs both ¬a → b and ¬b → a.
 * **2-SAT: inverted assignment.** Tarjan ids are reverse topological; Kosaraju's (second pass on the transpose) are topological. Test on a tiny forced instance such as the single clause (x ∨ x).

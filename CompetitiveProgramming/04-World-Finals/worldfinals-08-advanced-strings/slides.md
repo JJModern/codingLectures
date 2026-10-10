@@ -210,7 +210,7 @@ Maintain s = s₁ s₂ s₃ where s₁ is factored, s₂ = (u)^m u' is a "pre-Ly
 - `s[j] > s[k]`: s₂ + s[j] becomes one Lyndon word, k = i
 - `s[j] < s[k]`: emit the copies of u, restart after them
 
-O(n) time, O(1) extra memory; each character is compared ≤ 2 times on amortised average... ≤ 4n comparisons total.
+O(n) time, O(1) extra memory, fewer than 4n character comparisons.
 
 ---
 
