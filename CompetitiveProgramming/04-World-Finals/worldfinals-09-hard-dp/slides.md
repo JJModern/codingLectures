@@ -240,6 +240,7 @@ ll exactlyK(const vector<ll>& a, int k) {
     return solve(a, lo).first + lo * k;
 }
 ```
+Overflow: λ · count can reach n · Σ|aᵢ| — use `__int128` for the value when that exceeds 9·10¹⁸.
 
 ---
 

@@ -82,7 +82,7 @@ If several consecutive k lie on one line (f is linear there), they are simultane
 2. Binary search the **smallest** integer λ with cnt_min(λ) ≤ k.
 3. At that λ, k is among the optimal counts (cnt_min(λ) ≤ k ≤ cnt_max(λ)), so f(k) = g(λ) + λ · k. Use k, **not** the returned count.
 
-Why step 3 holds: with integer data all slopes are integers. Let λ* = f(k+1) − f(k) (or −∞-like when k is the maximum count). For λ = λ*, both k and k+1 are optimal and cnt_min ≤ k; for λ = λ* − 1, the slope f(k+1) − f(k) > λ so every optimal count is ≥ k+1. So the smallest λ with cnt_min(λ) ≤ k is λ*, at which k is optimal.
+Why step 3 holds: with integer data all slopes are integers. Let λ* = f(k+1) − f(k) (when k = n there is no k+1; the search then ends at the lower bound −B, where n is optimal). For λ = λ*, both k and k+1 are optimal and cnt_min ≤ k; for λ = λ* − 1, the slope f(k+1) − f(k) > λ so every optimal count is ≥ k+1. So the smallest λ with cnt_min(λ) ≤ k is λ*, at which k is optimal.
 
 The search range must contain all slopes. For "k disjoint subarrays", one extra subarray can change the total by up to Σ|aᵢ|, so λ ∈ [−Σ|aᵢ| − 1, Σ|aᵢ| + 1]. (Our first test used ±3·10⁹ for values up to 10⁹ and failed: a single slope can exceed max|aᵢ|.)
 
@@ -145,10 +145,11 @@ const ll MOD = 1'000'000'007;
 
 int main() {
     const int B = 20, N = 1 << B;
+    ios::sync_with_stdio(false); cin.tie(nullptr);
     int n;
-    scanf("%d", &n);
+    cin >> n;
     vector<int> c(N, 0);
-    for (int i = 0; i < n; i++) { int a; scanf("%d", &a); c[a]++; }
+    for (int i = 0; i < n; i++) { int a; cin >> a; c[a]++; }
     for (int i = 0; i < B; i++)                       // superset sums: c[S] = #elements ⊇ S
         for (int S = 0; S < N; S++)
             if (!(S >> i & 1)) c[S] += c[S | (1 << i)];
@@ -187,7 +188,7 @@ vector<ll> subsetConv(const vector<ll>& f, const vector<ll>& g, int n) {   // O(
 }
 ```
 
-For a modulus, reduce after each step. For speed at n = 20, iterate S in the innermost loop of the H computation only over masks with popcount ≥ k (or skip the rank check — the Möbius step zeroes wrong ranks only if you read the right rank).
+For a modulus, reduce after each step. At n = 20 the ranked product is about n²/2 · 2ⁿ ≈ 2·10⁸ multiply-adds; use 32-bit unsigned modular arithmetic and keep the mask loop innermost (contiguous memory) to stay around a second.
 
 ### 6.3 Broken profile — CSES 2181 *Counting Tilings*
 
