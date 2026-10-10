@@ -307,7 +307,7 @@ int main() {
 - UVa 10142 — Australian Voting (multi-round rules, careful parsing)
 - CSES 1192 — Counting Rooms (grid traversal without recursion): https://cses.fi/problemset/task/1192
 
-The UVa problems are available on the UVa Online Judge (https://onlinejudge.org) and in the *Programming Challenges* problem collection.
+The UVa problems are on the UVa Online Judge (https://onlinejudge.org); 10267, 10196 and 10142 also appear in the *Programming Challenges* book.
 
 ## 9. Further reading
 
