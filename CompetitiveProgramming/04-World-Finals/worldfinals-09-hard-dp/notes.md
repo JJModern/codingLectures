@@ -235,30 +235,33 @@ using namespace std;
 typedef long long ll;
 
 // Penalised DP: each subarray costs lambda. Returns (best value, MIN #subarrays among optimal).
-pair<ll, int> solvePenalized(const vector<ll>& a, ll lambda) {
-    auto better = [](pair<ll, int> x, pair<ll, int> y) {
+// Values use __int128: |lambda| * #subarrays can reach n * sum|a_i| (e.g. 2e5 * 2e14).
+typedef __int128 LL;
+pair<LL, int> solvePenalized(const vector<ll>& a, ll lambda) {
+    auto better = [](pair<LL, int> x, pair<LL, int> y) {
         return x.first != y.first ? x.first > y.first : x.second < y.second;
     };
-    pair<ll, int> out = {0, 0}, in = {LLONG_MIN / 4, 0};   // not inside / inside a subarray
+    const LL NEG = -((LL)1 << 120);
+    pair<LL, int> out = {0, 0}, in = {NEG, 0};               // not inside / inside a subarray
     for (ll x : a) {
-        pair<ll, int> from = better(out, in) ? out : in;    // a new subarray may start right after one ends
-        pair<ll, int> startNew = {from.first - lambda + x, from.second + 1};
-        pair<ll, int> extend = {in.first + x, in.second};
+        pair<LL, int> from = better(out, in) ? out : in;     // a new subarray may start right after one ends
+        pair<LL, int> startNew = {from.first - lambda + x, from.second + 1};
+        pair<LL, int> extend = {in.first + x, in.second};
         in = better(startNew, extend) ? startNew : extend;
         out = from;
     }
     return better(out, in) ? out : in;
 }
 
-ll exactlyK(const vector<ll>& a, int k) {                   // 1 <= k <= n
+ll exactlyK(const vector<ll>& a, int k) {                    // 1 <= k <= n
     ll B = 1;
-    for (ll x : a) B += llabs(x);                           // every slope f(k)-f(k-1) is in [-B, B]
+    for (ll x : a) B += llabs(x);                            // every slope f(k)-f(k-1) is in [-B, B]
     ll lo = -B, hi = B;
-    while (lo < hi) {                                       // smallest lambda with cnt_min <= k
+    while (lo < hi) {                                        // smallest lambda with cnt_min <= k
         ll mid = lo + (hi - lo) / 2;
         if (solvePenalized(a, mid).second <= k) hi = mid; else lo = mid + 1;
     }
-    return solvePenalized(a, lo).first + lo * k;            // k, not the returned count
+    return (ll)(solvePenalized(a, lo).first + (LL)lo * k);   // k, not the returned count
 }
 
 int main() {
@@ -270,7 +273,7 @@ int main() {
 }
 ```
 
-With |aᵢ| ≤ 10⁹ and n ≤ 2·10⁵, B ≤ 2·10¹⁴ and g(λ) stays within about 10¹⁹/… — check: the penalised value is at most n·max|a| + n·B ≈ 4·10¹⁹, which overflows `long long` in the extreme case. If n·B can exceed ~9·10¹⁸, either bound λ by max|a| · n more tightly for your problem, or use `__int128` for the value. (For this particular problem, λ never needs to exceed 2·max|aᵢ| in absolute value when k ≤ number of… — prove such bounds per problem rather than trusting them.)
+Overflow check: with |aᵢ| ≤ 10⁹ and n ≤ 2·10⁵ we have B ≤ 2·10¹⁴, and the penalised value can reach n · B ≈ 4·10¹⁹ — beyond `long long`, hence `__int128` inside the DP. The final answer f(k) ≤ Σ|aᵢ| fits in `long long`. Always redo this bound for your problem: the penalty term λ · count is the one that overflows.
 
 ### 6.5 Slope trick — CF 713C *Sonya and Problem Wihtout a Legend*
 
